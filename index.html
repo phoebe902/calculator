@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standard Calculator</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            background-color:#f0f0f0;
+        }
+
+        .calculator{
+            background-color:#e0e0e0;
+            border-radius:10px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+            padding:20px;
+            width: 320px;
+        }
+        .display{
+            background-color:#fff;
+            border-radius:5px;
+            text-align:right;
+            padding:15px;
+            font-size:2em;
+            margin-bottom:10px;
+            box-shadow: inset 0px 2px 5px rgba(0,0,0,0.1);
+        }
+        .buttons{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:10px;
+        }
+        
+        button{
+            padding:20px;
+            font-size:1.2em;
+            border:none;
+            border-radius: 5px;
+            background-color:#d4d4d4;
+            cursor:pointer;
+            transition: background-color 0.2s;
+
+        }
+
+        button:hover{
+            background-color: #b5b5b5;
+        }
+
+        button.operator{
+            background-color: #f9a825;
+            color:#fff;
+
+        }
+
+        button.operator#hover{
+            background-color: #f57f17;
+        }
+
+        button.extra{
+            background-color: #64b5f6;
+            color:#fff;
+        }
+
+        button.extra:hover{
+            background-color: #42a5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div id="display" class="display">0</div>
+        <div class="buttons">
+            <button class="extra" onclick="showDeveloper()">A</button>
+            <button class="extra" onclick="showApp()">B</button>
+            <button onclick="clearDisplay()">C</button>
+            <button class="operator" onclick="inputOperator('/')">/</button>
+
+            <button onclick="inputNumber('7')">7</button>
+            <button onclick="inputNumber('8')">8</button>
+            <button onclick="inputNumber('9')">9</button>
+            <button class="operator" onclick="inputOperator('*')">*</button>
+
+            <button onclick="inputNumber('4')">4</button>
+            <button onclick="inputNumber('5')">5</button>
+            <button onclick="inputNumber('6')">6</button>
+            <button class="operator" onclick="inputOperator('-')">-</button>
+
+            <button onclick="inputNumber('1')">1</button>
+            <button onclick="inputNumber('2')">2</button>
+            <button onclick="inputNumber('3')">3</button>
+            <button class="operator" onclick="inputOperator('+')">+</button>
+
+            <button onclick="inputNumber('0')" style="grid-column:span 2;" >0</button>
+            <button onclick="inputNumber('.')">.</button>
+            <button class="operator" onclick="calculateResult()">=</button>
+        </div>
+    </div>
+    <script>
+        let currentInput='';
+        let operator ='';
+        let previousInput ='';
+
+        const display = document.getElementById('display');
+
+        function inputNumber(num){
+            if(currentInput.includes('.') && num === '.') return;
+            currentInput+= num;
+            updateDisplay(currentInput);
+
+        }
+
+         function inputOperator(op) {
+            if (currentInput === '' && previousInput === '') return;
+            if (previousInput !== '') {
+                calculateResult();
+            }
+            operator = op;
+            previousInput = currentInput;
+            currentInput = '';
+        }
+
+        function calculateResult() {
+            if (currentInput === '' || previousInput === '' || operator === '') return;
+            let result;
+            const prev = parseFloat(previousInput);
+            const curr = parseFloat(currentInput);
+
+            switch(operator) {
+                case '+': result = prev + curr; break;
+                case '-': result = prev - curr; break;
+                case '*': result = prev * curr; break;
+                case '/': result = curr !== 0 ? prev / curr : 'Error'; break;
+                default: return;
+            }
+
+            currentInput = result.toString();
+            operator = '';
+            previousInput = '';
+            updateDisplay(currentInput);
+        }
+
+        function clearDisplay() {
+            currentInput = '';
+            previousInput = '';
+            operator = '';
+            updateDisplay('0');
+        }
+
+        function updateDisplay(value) {
+            display.textContent = value;
+        }
+
+        function showDeveloper() {
+            alert("Developer: FEBB KIMBERLY JOY B. EDAÑO\nEmail: febbkimberlyjoy.edano@nmsc.edu.ph");
+        }
+
+        function showApp() {
+            alert("Application: Standard Calculator\nVersion: 1.0\nFeatures: Basic arithmetic, Developer & App Info");
+        }
+    </script>
+</body>
+</html>
+   
