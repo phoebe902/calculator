@@ -75,15 +75,13 @@
     <div class="calculator">
         <div id="display" class="display">0</div>
         <div class="buttons">
-            <button class="extra" onclick="showDeveloper()">A</button>
-            <button class="extra" onclick="showApp()">B</button>
-            <button onclick="clearDisplay()">C</button>
-            <button class="operator" onclick="inputOperator('/')">/</button>
+            
 
             <button onclick="inputNumber('7')">7</button>
             <button onclick="inputNumber('8')">8</button>
             <button onclick="inputNumber('9')">9</button>
-            <button class="operator" onclick="inputOperator('*')">*</button>
+            <button class="operator" onclick="inputOperator('+')">+</button>
+            
 
             <button onclick="inputNumber('4')">4</button>
             <button onclick="inputNumber('5')">5</button>
@@ -93,11 +91,21 @@
             <button onclick="inputNumber('1')">1</button>
             <button onclick="inputNumber('2')">2</button>
             <button onclick="inputNumber('3')">3</button>
-            <button class="operator" onclick="inputOperator('+')">+</button>
+            <button class="operator" onclick="inputOperator('*')">*</button>
 
-            <button onclick="inputNumber('0')" style="grid-column:span 2;" >0</button>
-            <button onclick="inputNumber('.')">.</button>
-            <button class="operator" onclick="calculateResult()">=</button>
+            
+           
+            
+
+            <button class="extra" onclick="showDeveloper()">A</button>
+            <button onclick="inputNumber('0')">0</button>
+            <button class="extra" onclick="showApp()">B</button>
+            
+            <button class="operator" onclick="inputOperator('/')">/</button>
+          
+            <button class="operator" onclick="calculateResult()" style="grid-column: 4; grid-row: 5;">=</button>
+           
+            <button onclick="clearDisplay()" style="grid-column: 2; grid-row: 6;">Clear</button>
         </div>
     </div>
     <script>
@@ -160,7 +168,7 @@
         }
 
         function showApp() {
-            alert("Application: Standard Calculator\nVersion: 1.0\nFeatures: Basic arithmetic, Developer & App Info");
+            alert("Application: Standard Calculator\nVersion: 1.0\nFeatures: Basic Arithmetic");
         }
     </script>
 </body>
