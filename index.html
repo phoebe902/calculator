@@ -116,11 +116,14 @@
         const display = document.getElementById('display');
 
         function inputNumber(num){
-            if(currentInput.includes('.') && num === '.') return;
-            currentInput+= num;
-            updateDisplay(currentInput);
-
-        }
+    if (currentInput === '0' && num !== '.') {
+        currentInput = num; 
+    } else {
+        if(currentInput.includes('.') && num === '.') return;
+        currentInput += num;
+    }
+    updateDisplay(currentInput);
+}
 
          function inputOperator(op) {
             if (currentInput === '' && previousInput === '') return;
